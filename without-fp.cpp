@@ -3,24 +3,29 @@
 
 using namespace std;
 
-bool ascendingCompare(int a, int b)
-{
-    return a > b;
-}
-bool descendingCompare(int a, int b)
-{
-    return a < b;
-}
 
-
-
-void bubbleSort(vector<int> arr, bool (*compareFuncPtr)(int, int))
+void bubbleSortAscending(vector<int> arr)
 {
     for (int i = 0; i < arr.size(); i++)
     {
         for (int j = 0; j < arr.size() - i - 1; j++)
         {
-            if (compareFuncPtr(arr[j], arr[j + 1]))
+            if (arr[j] > arr[j + 1])
+            {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+
+    return;
+}
+void bubbleSortDescending(vector<int> arr)
+{
+    for (int i = 0; i < arr.size(); i++)
+    {
+        for (int j = 0; j < arr.size() - i - 1; j++)
+        {
+            if (arr[j] < arr[j + 1])
             {
                 swap(arr[j], arr[j + 1]);
             }
@@ -43,17 +48,13 @@ void showList(vector<int> arr)
 int main()
 {
     vector<int> arr{6, 5, 4, 3, 2};
-    // function pointer
-    bool (*compareFuncPtr)(int, int) = ascendingCompare;
-    bubbleSort(arr, compareFuncPtr);
+    bubbleSortAscending(arr);
     showList(arr);
 
     cout << endl;
     
     arr = {20, 30, 40, 50, 60};
-    // function pointer
-    compareFuncPtr = descendingCompare;
-    bubbleSort(arr, compareFuncPtr);
+    bubbleSortDescending(arr);
     showList(arr);
 
     return 0;
